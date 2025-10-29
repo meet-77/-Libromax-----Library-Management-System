@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit User - LibroMax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+<form method="POST">
+  {% csrf_token %}
+
+  <label class="block mb-2 font-medium">User</label>
+  <select name="user" class="border p-2 w-full mb-4 rounded">
+    {% for user in users %}
+      <option value="{{ user.id }}" {% if borrowing.user.id == user.id %}selected{% endif %}>
+        {{ user.username }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <label class="block mb-2 font-medium">Book</label>
+  <select name="book" class="border p-2 w-full mb-4 rounded">
+    {% for book in books %}
+      <option value="{{ book.id }}" {% if borrowing.book.id == book.id %}selected{% endif %}>
+        {{ book.Book_name }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <label class="block mb-2 font-medium">Status</label>
+  <select name="status" class="border p-2 w-full mb-4 rounded">
+    <option value="borrowed" {% if borrowing.status == "borrowed" %}selected{% endif %}>Borrowed</option>
+    <option value="returned" {% if borrowing.status == "returned" %}selected{% endif %}>Returned</option>
+    <option value="lost" {% if borrowing.status == "lost" %}selected{% endif %}>Lost</option>
+  </select>
+
+  <label class="block mb-2 font-medium">Due Date</label>
+  <input type="date" name="due_date" value="{{ borrowing.due_date|date:'Y-m-d' }}" class="border p-2 w-full mb-4 rounded">
+
+  <label class="block mb-2 font-medium">Returned At</label>
+  <input type="datetime-local" name="returned_at" value="{{ borrowing.returned_at|date:'Y-m-d\\TH:i' }}" class="border p-2 w-full mb-4 rounded">
+
+  <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+    Update Borrowing
+  </button>
+</form>
+</div>
+</body>
+</html>
