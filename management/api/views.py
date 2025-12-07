@@ -42,8 +42,8 @@ class BookAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class BookDetailAPIView(APIView):
+
     def get(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
         serializer = BookSerializer(book)
@@ -57,10 +57,19 @@ class BookDetailAPIView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def patch(self, request, pk):
+        book = get_object_or_404(Book, pk=pk)
+        serializer = BookSerializer(book, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
         book.delete()
         return Response({'message': 'Book deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
     
     
 def add_author(request):
@@ -99,6 +108,7 @@ class AuthorAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AuthorDetailAPIView(APIView):
+
     def get_object(self, pk):
         return get_object_or_404(Author, pk=pk)
 
@@ -115,10 +125,19 @@ class AuthorDetailAPIView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def patch(self, request, pk):
+        author = self.get_object(pk)
+        serializer = Authorserializers(author, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self, request, pk):
         author = self.get_object(pk)
         author.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({'message': 'Author deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
     
     
 def add_borrowing(request):
@@ -174,21 +193,31 @@ class BorrowindAPIView(APIView):
          
     
 class BorrowedDetailsAPIView(APIView):
-    def get(self , request , id):
-        borrowing = get_object_or_404(pk=id)
+
+    def get(self, request, pk):
+        borrowing = get_object_or_404(Borrowing, pk=pk)
         serializer = Borrowingserializers(borrowing)
         return Response(serializer.data)
-    
-    def put(self, request , id):
-        borrowing = get_object_or_404(Borrowing,pk=id)
-        serializer = Borrowingserializers(Borrowing,data=request.data)
+
+    def put(self, request, pk):
+        borrowing = get_object_or_404(Borrowing, pk=pk)
+        serializer = Borrowingserializers(borrowing, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    def delete(self, request , id):
-        borrowing = get_object_or_404(borrowing,pk=id)
+
+    def patch(self, request, pk):
+        borrowing = get_object_or_404(Borrowing, pk=pk)
+        serializer = Borrowingserializers(borrowing, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        borrowing = get_object_or_404(Borrowing, pk=pk)
         borrowing.delete()
-        return Response({'message': ' Borrowing is deleted successfull'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'message': 'Borrowing deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
     

@@ -18,14 +18,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from management.views import Dashboard, register_views , manage_books ,edit_book , delete_book , manage_user,edit_user,delete_user , ManageAuthorsView ,EditAuthorView ,DeleteAuthorView  , manage_borrowed , edit_borrowing
+from management.views import Dashboard, register_views , manage_books ,edit_book , delete_book , manage_user,edit_user,delete_user , ManageAuthorsView ,EditAuthorView ,DeleteAuthorView  , manage_borrowed , edit_borrowing , login_views , logout_view
 from management.api.views import add_book  , add_author , add_borrowing
 from django.urls import re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.contrib.auth.decorators import login_required
 
-...
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -42,8 +42,10 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dashboard/', Dashboard, name='dashboard'),
-    path('register/', register_views, name='register'),  # ✅ Added register URL
+    path('dashboard/', login_required(Dashboard, login_url='/login/') , name='dashboard'),
+    path('register/', register_views, name='register'),
+    path('login/', login_views, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('add_book/', add_book, name='add_books'),
     path('manage_books/', manage_books, name='manage_books'),
     path('edit_book/<int:id>/', edit_book, name='edit_book'),

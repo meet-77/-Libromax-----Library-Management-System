@@ -4,6 +4,7 @@ from django.contrib import messages
 from management.models import Book , Author , Borrowing
 from django.contrib.auth import authenticate, login, logout 
 # Create your views here.
+
 def register_views(request):
     if request.method == "POST":
         first_name = request.POST.get('firstname')
@@ -11,42 +12,50 @@ def register_views(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # Check if username already exists
+        # Check if username exists
         if User.objects.filter(username=username).exists():
             messages.warning(request, 'Username already exists!')
-            return redirect('dashboard')
+            return redirect('register')
 
-        # Create new user (create_user auto-hashes password)
+        # Create User
         user = User.objects.create_user(
             username=username,
             first_name=first_name,
             last_name=last_name,
             password=password
         )
-        user.save()  # ✅ Save user to DB
+        user.save()
 
-        messages.success(request, 'Account created successfully!')
-        return redirect('dashboard')  # Redirect back or to login page
+        messages.success(request, 'Account created successfully!')     # Auto login after register
+        return redirect('dashboard')  # Go to dashboard
 
-    return render(request, 'dashboard.html')
+    return render(request, 'register.html')
 
 
 def login_views(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
-        user = authenticate(request , username=username, password=password)
-        
-        if user is None:
-            messages.error(request,'Invalid username or password')
-            return redirect('/login/')
-        
-        login(request,user)
-        return redirect('/')
-    
-    return render(request , 'Login.html')
 
+        user = authenticate(request, username=username, password=password)
+
+        if user is None:
+            messages.error(request, 'Invalid username or password')
+            return redirect('login')
+
+        login(request, user)
+        return redirect('dashboard')
+
+    return render(request, 'Login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 
 def Dashboard(request):

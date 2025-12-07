@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)k%*mh1g6(@rc*=v4cpc5-(mov82!1n9g4dsl3elr37c-z$wu@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.up.railway.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']  
 
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1']
@@ -119,7 +119,6 @@ USE_I18N = True
 USE_TZ = True
 
 import os
-import dj_database_url
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
@@ -130,10 +129,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
-DATABASES = {
-    'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
-}
 
  

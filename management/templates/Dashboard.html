@@ -36,30 +36,7 @@
       <a href="{% url "manage_borrowed" %}" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
         <span class="mr-2">🏷️</span> Manage borrowed
       </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">📤</span> Issued Books
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">📥</span> Returned Books
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">⚠️</span> Overdue Books
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">💰</span> Fines & Payments
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">🧑‍💼</span> Staff Management
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">✉️</span> Email
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">📊</span> Reports / Analytics
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">⚙️</span> Settings
-      </a>
+     
     </nav>
   </aside>
 
@@ -81,11 +58,13 @@
             </svg>
           </div>
          <div class="flex items-center space-x-3">
-            <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-full">
             <div>
-              <p class="font-semibold">Ravindu Perera</p>
-              <p class="text-sm text-gray-500">Admin</p>
+            <a href="{% url 'logout' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
+              LogOut
+            </a>
+
             </div>
+          
           </div>
         </div>
     </div>

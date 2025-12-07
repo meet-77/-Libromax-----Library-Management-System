@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>404 — Page Not Found</title>
+    <style>
+      :root {
+        --bg: #0f1724; /* deep navy */
+        --card: #0b1220; /* slightly lighter */
+        --muted: #9aa6b2; /* muted text */
+        --accent: #6ee7b7; /* mint */
+        --pink: #ff7ab6;
+        --glass: rgba(255, 255, 255, 0.03);
+        --radius: 18px;
+        --maxw: 920px;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(
+            1200px 600px at 10% 20%,
+            rgba(110, 231, 183, 0.06),
+            transparent 8%
+          ),
+          radial-gradient(
+            900px 400px at 90% 80%,
+            rgba(255, 122, 182, 0.04),
+            transparent 8%
+          ),
+          var(--bg);
+        color: #e6eef6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .card {
+        width: 100%;
+        max-width: var(--maxw);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: calc(var(--radius) + 6px);
+        padding: 36px;
+        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+        display: flex;
+        gap: 28px;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(6px) saturate(120%);
+      }
+
+      .visual {
+        flex: 0 0 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.005)
+        );
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+
+      /* SVG animation */
+      svg .floating {
+        transform-origin: center;
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(2deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(-2deg);
+        }
+      }
+
+      .content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      h1 {
+        margin: 0 0 6px 0;
+        font-size: 34px;
+        letter-spacing: -0.4px;
+        color: #ffffff;
+      }
+
+      p.lead {
+        margin: 0 0 18px 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.45;
+      }
+
+      .meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+          monospace;
+        background: var(--glass);
+        padding: 8px 12px;
+        border-radius: 10px;
+        color: var(--accent);
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        border: 1px solid rgba(110, 231, 183, 0.06);
+        font-size: 13px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      a.btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+
+      a.btn-primary {
+        background: linear-gradient(90deg, var(--accent), #4fd1c5);
+        color: #04121a;
+        box-shadow: 0 6px 18px rgba(110, 231, 183, 0.12);
+      }
+
+      a.btn-ghost {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      a.btn:hover {
+        transform: translateY(-3px);
+      }
+
+      /* search input */
+      .search {
+        margin-top: 18px;
+        display: flex;
+        gap: 8px;
+        max-width: 560px;
+      }
+
+      .search input {
+        flex: 1;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.015);
+        color: #e8f4f1;
+        outline: none;
+        font-size: 14px;
+      }
+
+      .search button {
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: none;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--muted);
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .foot {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* Responsive */
+      @media (max-width: 880px) {
+        .card {
+          flex-direction: column;
+          padding: 24px;
+          gap: 18px;
+        }
+        .visual {
+          flex: 0 0 auto;
+          width: 80%;
+          max-width: 360px;
+        }
+        h1 {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        body {
+          padding: 18px;
+        }
+        .card {
+          padding: 18px;
+        }
+        .visual {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main" aria-labelledby="page-title">
+      <div class="visual" aria-hidden="true">
+        <!-- Inline SVG illustration (searching box + paper) -->
+        <svg
+          width="240"
+          height="160"
+          viewBox="0 0 240 160"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#6ee7b7" stop-opacity="0.9" />
+              <stop offset="1" stop-color="#4fd1c5" stop-opacity="0.9" />
+            </linearGradient>
+          </defs>
+
+          <rect
+            x="18"
+            y="18"
+            width="160"
+            height="110"
+            rx="12"
+            fill="#071523"
+            stroke="url(#g1)"
+            stroke-width="1.5"
+          />
+          <rect
+            class="floating"
+            x="36"
+            y="30"
+            width="124"
+            height="84"
+            rx="8"
+            fill="#081826"
+            stroke="rgba(255,255,255,0.02)"
+          />
+          <!-- lines -->
+          <g class="floating" opacity="0.85" fill="#8fbfc0">
+            <rect x="52" y="42" width="88" height="6" rx="3" />
+            <rect x="52" y="56" width="64" height="6" rx="3" />
+            <rect x="52" y="70" width="80" height="6" rx="3" />
+            <rect x="52" y="84" width="36" height="6" rx="3" />
+          </g>
+
+          <!-- magnifier -->
+          <g transform="translate(190,90)" class="floating">
+            <circle
+              cx="0"
+              cy="0"
+              r="22"
+              fill="transparent"
+              stroke="rgba(255,255,255,0.08)"
+              stroke-width="3"
+            />
+            <rect
+              x="14"
+              y="16"
+              width="28"
+              height="6"
+              rx="3"
+              transform="rotate(40 14 16)"
+              fill="rgba(255,255,255,0.06)"
+            />
+            <circle cx="-4" cy="-4" r="4" fill="url(#g1)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="content">
+        <h1 id="page-title">404 — Page Not Found</h1>
+        <p class="lead">
+          Oops! The page you’re looking for doesn’t exist or has been moved. If
+          you typed a URL, please check it — otherwise try searching or go back
+          to the homepage.
+        </p>
+
+        <div class="meta" aria-hidden="false">
+          <div class="code">Error code: 404</div>
+          <div class="code" title="Route attempted">
+            Route:
+            <strong style="color: #dffbf1; margin-left: 6px">/unknown</strong>
+          </div>
+        </div>
+
+        <div class="buttons" role="navigation" aria-label="404 actions">
+          <a class="btn btn-primary" href="{% url "dashboard" %}" title="Go to homepage"
+            >← Go to Homepage</a
+          >
+        
+        </div>
+ 
+
+        <div class="foot">
+          Tip: If you arrived here after clicking a link, the link might be
+          outdated — please let us know.
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Simple client-side search helper (demo) — replace with your actual search route
+      function doSearch() {
+        const q = document.getElementById("search-input").value.trim();
+        if (!q) {
+          // shake input briefly to indicate required
+          const inp = document.getElementById("search-input");
+          inp.animate(
+            [
+              { transform: "translateX(0)" },
+              { transform: "translateX(-6px)" },
+              { transform: "translateX(6px)" },
+              { transform: "translateX(0)" },
+            ],
+            { duration: 300 }
+          );
+          inp.focus();
+          return;
+        }
+        // In a real app, navigate to your search page, e.g.: /search/?q=...
+        window.location.href = `/search/?q=${encodeURIComponent(q)}`;
+      }
+
+      // Accessibility: set focus to first actionable element
+      (function setInitialFocus() {
+        const primary = document.querySelector(".btn-primary");
+        if (primary) primary.focus();
+      })();
+    </script>
+  </body>
+</html>

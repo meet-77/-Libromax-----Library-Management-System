@@ -33,30 +33,7 @@
       <a href="{% url "manage_borrowed" %}" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
         <span class="mr-2">🏷️</span> Manage borrowed
       </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">📤</span> Issued Books
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">📥</span> Returned Books
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">⚠️</span> Overdue Books
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">💰</span> Fines & Payments
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">🧑‍💼</span> Staff Management
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">✉️</span> Email
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">📊</span> Reports / Analytics
-      </a>
-      <a href="#" class="flex items-center px-6 py-2 hover:bg-blue-800 rounded-md">
-        <span class="mr-2">⚙️</span> Settings
-      </a>
+     
     </nav>
   </aside>
 
@@ -67,10 +44,10 @@
       <h1 class="text-2xl font-semibold">Manage Users</h1>
       <div class="flex items-center space-x-3">
         <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-full">
-        <div>
+        {% comment %} <div>
           <p class="font-semibold">Admin</p>
           <p class="text-sm text-gray-500">Administrator</p>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
 
