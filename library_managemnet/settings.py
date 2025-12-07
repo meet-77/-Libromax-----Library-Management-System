@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)k%*mh1g6(@rc*=v4cpc5-(mov82!1n9g4dsl3elr37c-z$wu@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']  
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']  
 
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1']
