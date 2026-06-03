@@ -1,0 +1,78 @@
+# =========================
+# Django
+# =========================
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Django migrations (optional - keep if needed in team)
+**/migrations/__pycache__/
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.local
+.env.*.local
+
+# =========================
+# Static / Build files
+# =========================
+staticfiles/
+dist/
+build/
+
+# Tailwind / Node build
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Python virtual environment
+# =========================
+venv/
+env/
+.venv/
+
+# =========================
+# IDEs / Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Coverage / testing
+# =========================
+htmlcov/
+.coverage
+.pytest_cache/
+
+# =========================
+# Django collectstatic (important)
+# =========================
+staticfiles/
+
+# =========================
+# Node / Tailwind specific
+# =========================
+theme/static_src/node_modules/
+theme/static_src/.parcel-cache/
+theme/static_src/dist/
+
+# =========================
+# Logs & cache
+# =========================
+*.log
+cache/
